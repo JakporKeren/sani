@@ -1,0 +1,182 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 18, 2026, 5:21:24 PM
+    Author     : ASUS
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: pink;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    height: 650px; /* Ditinggikan sedikit untuk register */
+}
+
+.card {
+    display: flex;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.left {
+    flex: 1;
+    background-color: #2b1c1a;
+    color: white;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 60px;
+}
+
+.bus-icon {
+    background: #fff;
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-size: 20px;
+}
+
+.brand-name {
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.welcome-text h1 {
+    font-size: 42px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.welcome-text p {
+    color: #a38b88;
+    font-size: 14px;
+}
+
+.right {
+    flex: 1.2;
+    padding: 40px 80px;
+    background-color: #fffefd;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right h2 {
+    font-size: 32px;
+    color: #2b1c1a;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: #b5a4a1;
+    letter-spacing: 1.5px;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #b5a4a1;
+    margin-bottom: 8px;
+}
+
+input[type="text"], 
+input[type="password"], 
+select {
+    padding: 12px;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #2b1c1a;
+    box-shadow: 0 0 5px rgba(43, 28, 26, 0.1);
+}
+
+.input-group small {
+    font-size: 9px;
+    color: #b5a4a1;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.login-btn {
+    background-color: #2b1c1a;
+    color: white;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #452d2a;
+    transform: translateY(-2px);
+}
+
+.link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #b5a4a1;
+}
+
+.link a {
+    color: #2b1c1a;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid #2b1c1a;
+    padding-bottom: 2px;
+    margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+    .card { flex-direction: column; height: auto; }
+    .left { padding: 30px; }
+    .right { padding: 40px 30px; }
+    .welcome-text h1 { font-size: 28px; }
+}
+
