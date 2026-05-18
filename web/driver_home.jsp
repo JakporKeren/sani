@@ -675,11 +675,12 @@
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/bus_system", "root", "");
 
-                String sql = "SELECT b.id as booking_id, b.booking_ref, s.bus_name, s.origin, s.destination, " +
-                             "s.departure_time, s.arrival_time, b.num_passengers, b.assigned_bus " +
-                             "FROM bookings b " +
-                             "JOIN schedules s ON b.schedule_id = s.id " +
-                             "WHERE b.driver_username = ? " +
+                String sql = "SELECT ds.id as assignment_id, ds.booking_ref, ds.assigned_bus, " +
+                             "s.id as schedule_id, s.bus_name, s.origin, s.destination, " +
+                             "s.departure_time, s.arrival_time " +
+                             "FROM driver_schedules ds " +
+                             "JOIN schedules s ON ds.schedule_id = s.id " +
+                             "WHERE ds.driver_username = ? " +
                              "ORDER BY s.departure_time ASC";
 
                 pst = conn.prepareStatement(sql);
@@ -694,18 +695,18 @@
                     String destination = rs.getString("destination");
                     Time depTime = rs.getTime("departure_time");
                     Time arrTime = rs.getTime("arrival_time");
-                    int numPassengers = rs.getInt("num_passengers");
                     String assignedBus = rs.getString("assigned_bus");
+                    int scheduleId = rs.getInt("schedule_id");
 
                     long diff = arrTime.getTime() - depTime.getTime();
                     if (diff < 0) diff += 24 * 60 * 60 * 1000;
                     long hours = diff / 3600000;
                     long mins = (diff % 3600000) / 60000;
 
-                    // Get assigned seats for this booking
+                    // Get booked seats for this schedule
                     PreparedStatement seatPst = conn.prepareStatement(
-                        "SELECT seat_number FROM booked_seats WHERE booking_id = ? ORDER BY seat_number");
-                    seatPst.setInt(1, rs.getInt("booking_id"));
+                        "SELECT seat_number FROM booked_seats WHERE schedule_id = ? ORDER BY seat_number");
+                    seatPst.setInt(1, scheduleId);
                     ResultSet seatRs = seatPst.executeQuery();
                     List<String> seats = new ArrayList<>();
                     while (seatRs.next()) {
@@ -713,6 +714,7 @@
                     }
                     seatRs.close();
                     seatPst.close();
+                    int numPassengers = seats.size();
         %>
         <div class="schedule-card">
             <div class="card-header">
